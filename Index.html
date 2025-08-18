@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mariposas — Guía visual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f1221;
+      --card: #161a31;
+      --text: #e8ecff;
+      --muted: #a9b1d6;
+      --accent: #7c6cf6;
+      --accent-2: #48e9c7;
+      --ring: rgba(124,108,246,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f8ff; --card:#ffffff; --text:#0e1025; --muted:#52607a; --accent:#5a49f3; --accent-2:#00bfa6; --ring:rgba(90,73,243,.2);
+      }
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; background: radial-gradient(1200px 600px at 85% -10%, rgba(124,108,246,.18), transparent 60%), radial-gradient(900px 500px at -10% 10%, rgba(72,233,199,.18), transparent 60%), var(--bg); color:var(--text)}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header.site{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(15,18,33,.95), rgba(15,18,33,.75));backdrop-filter: blur(8px);border-bottom:1px solid rgba(171,179,214,.12)}
+    nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand .logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;box-shadow:var(--shadow)}
+    .brand .logo svg{filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
+    .navlinks{display:flex;flex-wrap:wrap;gap:10px}
+    .navlinks a{padding:10px 14px;border:1px solid rgba(169,177,214,.22);border-radius:999px;color:var(--text);text-decoration:none;font-weight:500;transition:.2s}
+    .navlinks a:hover{transform:translateY(-1px);box-shadow:0 10px 18px rgba(0,0,0,.18);border-color:var(--ring)}
+
+    .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;padding:48px 0}
+    .badge{display:inline-flex;align-items:center;gap:10px;padding:6px 12px;border-radius:999px;background:rgba(124,108,246,.15);border:1px solid var(--ring);font-size:14px}
+    .title{font-size:clamp(32px,5vw,56px);line-height:1.05;margin:10px 0 8px}
+    .subtitle{color:var(--muted);font-size:18px}
+    .cta{display:flex;gap:12px;margin-top:20px}
+    .btn{padding:12px 16px;border-radius:14px;border:1px solid rgba(169,177,214,.22);text-decoration:none;font-weight:600;display:inline-flex;gap:10px;align-items:center}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:white;border:none;box-shadow:0 12px 24px rgba(0,0,0,.25)}
+    .btn:hover{transform:translateY(-1px)}
+
+    .hero .card{position:relative;background:linear-gradient(180deg, rgba(124,108,246,.12), rgba(72,233,199,.06)), var(--card);border:1px solid rgba(169,177,214,.18);border-radius:24px;padding:20px;box-shadow:var(--shadow);overflow:hidden}
+    .hero .card img{width:100%;height:360px;object-fit:cover;border-radius:16px;filter:saturate(1.1) contrast(1.05)}
+    .note{position:absolute;right:14px;bottom:14px;font-size:12px;color:var(--muted)}
+
+    section{padding:40px 0}
+    .section-title{font-size:28px;margin:0 0 12px}
+    .section-sub{color:var(--muted);margin:0 0 24px}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .col-4{grid-column:span 4}
+    .col-6{grid-column:span 6}
+    .col-8{grid-column:span 8}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .col-4,.col-6,.col-8{grid-column:1/-1}
+    }
+
+    .card{background:var(--card);border:1px solid rgba(169,177,214,.18);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:6px 0 8px}
+    .chip{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(72,233,199,.15);border:1px solid var(--ring);font-size:12px}
+    .species-img{width:100%;height:180px;object-fit:cover;border-radius:14px}
+    .facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .fact{padding:8px 10px;border-radius:12px;background:rgba(169,177,214,.08);font-size:14px}
+
+    .accordion details{background:var(--card);border:1px solid rgba(169,177,214,.18);border-radius:16px;padding:14px}
+    .accordion details+details{margin-top:12px}
+    .accordion summary{cursor:pointer;font-weight:600}
+
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+    .gallery img{width:100%;height:170px;object-fit:cover;border-radius:14px;border:1px solid rgba(169,177,214,.18)}
+
+    .resources a{display:block;padding:10px 14px;border:1px dashed rgba(169,177,214,.35);border-radius:12px;text-decoration:none;margin-bottom:10px}
+
+    footer{padding:28px 0;color:var(--muted)}
+    .to-top{position:fixed;right:18px;bottom:18px;padding:12px 14px;border-radius:999px;background:var(--card);border:1px solid rgba(169,177,214,.22);box-shadow:var(--shadow);text-decoration:none}
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12c-3-3 1-6 4-4s-1 7-4 4Zm14 0c3-3-1-6-4-4s1 7 4 4Z" stroke="white" stroke-width="1.5"/>
+              <path d="M12 12c-2 0-4 2-4 4 0 1.5 1.2 3 4 3s4-1.5 4-3c0-2-2-4-4-4Z" stroke="white" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span>Mariposas</span>
+        </div>
+        <div class="navlinks">
+          <a href="#inicio">Inicio</a>
+          <a href="#especies">Especies</a>
+          <a href="#anatomia">Anatomía</a>
+          <a href="#conservacion">Conservación</a>
+          <a href="#galeria">Galería</a>
+          <a href="#recursos">Recursos</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="container">
+    <section class="hero">
+      <div>
+        <div class="badge">🦋 Enciclopedia visual</div>
+        <h1 class="title">El mundo de las mariposas</h1>
+        <p class="subtitle">Conoce su ciclo de vida, anatomía y algunas especies icónicas. Diseño moderno, responsive y listo para copiar en Visual Studio Code.</p>
+        <div class="cta">
+          <a class="btn primary" href="#especies">Ver especies destacadas</a>
+          <a class="btn" href="#conservacion">Cómo protegerlas</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Monarch_In_May.jpg" alt="Mariposa monarca en una flor"/>
+        <div class="note">Foto: Wikimedia Commons</div>
+      </div>
+    </section>
+
+    <section id="especies">
+      <h2 class="section-title">Especies destacadas</h2>
+      <p class="section-sub">Una mirada a mariposas de distintos continentes. Pasa el cursor sobre cada tarjeta para descubrir datos rápidos.</p>
+
+      <div class="grid">
+        <article class="card col-6">
+          <img class="species-img" src="https://upload.wikimedia.org/wikipedia/commons/1/17/Papilio_machaon_-_Schwalbenschwanz.jpg" alt="Papilio machaon sobre una flor"/>
+          <h3>Papilio machaon <span class="chip">Cola de golondrina</span></h3>
+          <p>Conocida por sus colas alargadas en las alas. Habita praderas y jardines templados.</p>
+          <div class="facts">
+            <div class="fact">Envergadura: 65–86 mm</div>
+            <div class="fact">Distribución: Eurasia / N. África</div>
+          </div>
+        </article>
+
+        <article class="card col-6">
+          <img class="species-img" src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Morpho_menelaus_male_dos_MHNT.jpg" alt="Morpho menelaus alas azules"/>
+          <h3>Morpho menelaus <span class="chip">Morpho azul</span></h3>
+          <p>Su color azul metálico proviene de <em>estructuras</em> microscópicas que reflejan la luz, no de pigmentos.</p>
+          <div class="facts">
+            <div class="fact">Hábitat: selvas tropicales</div>
+            <div class="fact">Distribución: América del Sur</div>
+          </div>
+        </article>
+
+        <article class="card col-6">
+          <img class="species-img" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Greta_oto.jpg" alt="Greta oto de alas transparentes"/>
+          <h3>Greta oto <span class="chip">Alas de cristal</span></h3>
+          <p>Sus alas transparentes la camuflan de depredadores. Un ejemplo fascinante de evolución.</p>
+          <div class="facts">
+            <div class="fact">Transparencia: alta</div>
+            <div class="fact">Distribución: Centroamérica</div>
+          </div>
+        </article>
+
+        <article class="card col-6">
+          <img class="species-img" src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Monarch_In_May.jpg" alt="Danaus plexippus sobre flores"/>
+          <h3>Danaus plexippus <span class="chip">Monarca</span></h3>
+          <p>Famosa por su migración de miles de kilómetros entre Norteamérica y México.</p>
+          <div class="facts">
+            <div class="fact">Distancia: hasta 4,800 km</div>
+            <div class="fact">Planta huésped: Asclepias</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="anatomia">
+      <h2 class="section-title">Anatomía básica</h2>
+      <p class="section-sub">Como otros lepidópteros, las mariposas tienen cuerpo dividido en cabeza, tórax y abdomen, con dos pares de alas cubiertas por <strong>escamas</strong> microscópicas.</p>
+      <div class="grid">
+        <div class="card col-8">
+          <ul>
+            <li><strong>Cabeza:</strong> antenas, ojos compuestos y espiritrompa enrollada para libar néctar.</li>
+            <li><strong>Tórax:</strong> donde se insertan las 6 patas y las 4 alas.</li>
+            <li><strong>Abdomen:</strong> órganos digestivos y reproductores.</li>
+          </ul>
+        </div>
+        <div class="card col-4">
+          <h3>Ciclo de vida</h3>
+          <ol>
+            <li>Huevo</li>
+            <li>Oruga (larva)</li>
+            <li>Crisálida (pupa)</li>
+            <li>Adulto (imago)</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="conservacion">
+      <h2 class="section-title">Conservación</h2>
+      <p class="section-sub">Las poblaciones se ven afectadas por la pérdida de hábitat, pesticidas y el cambio climático. Pequeñas acciones marcan la diferencia.</p>
+      <div class="accordion">
+        <details>
+          <summary>Planta flores nativas</summary>
+          <p>Favorecen fuentes de néctar durante toda la temporada. Evita especies invasoras.</p>
+        </details>
+        <details>
+          <summary>Reduce pesticidas</summary>
+          <p>Opta por control biológico e integra refugios para polinizadores.</p>
+        </details>
+        <details>
+          <summary>Protege rutas migratorias</summary>
+          <p>Apoya áreas protegidas y jardines de asclepias para la monarca.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <h2 class="section-title">Galería</h2>
+      <p class="section-sub">Imágenes de mariposas para inspirarte.</p>
+      <div class="gallery">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Morpho_menelaus_male_dos_MHNT.jpg" alt="Morpho azul"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Greta_oto.jpg" alt="Greta oto"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Monarch_In_May.jpg" alt="Monarca"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Papilio_machaon_-_Schwalbenschwanz.jpg" alt="Papilio machaon"/>
+      </div>
+    </section>
+
+    <section id="recursos">
+      <h2 class="section-title">Recursos</h2>
+      <div class="resources">
+        <a href="https://es.wikipedia.org/wiki/Papilionoidea" target="_blank" rel="noopener">Wikipedia: Superfamilia Papilionoidea</a>
+        <a href="https://www.nationalgeographic.com/animals/invertebrates/facts/butterflies" target="_blank" rel="noopener">National Geographic: Butterflies (en inglés)</a>
+        <a href="https://www.inaturalist.org/" target="_blank" rel="noopener">iNaturalist: Observa y reporta especies</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>Hecho con ♥ para aprender sobre mariposas. Imágenes vía Wikimedia Commons. Diseño por ti ✨</p>
+    </footer>
+  </main>
+
+  <a class="to-top" href="#inicio" aria-label="Volver al inicio">↑</a>
+</body>
+</html>
